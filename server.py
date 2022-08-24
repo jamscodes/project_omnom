@@ -1,24 +1,31 @@
 from flask import Flask, render_template, request, redirect
+from db import foods
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return 'You went somewhere you should not have'
+@app.route('/add-food')
+def r_add_food():
+    return render_template('add_food.html')
 
-@app.route('/herro')
-def add():
-    return render_template('index.html')
 
-    
 @app.route('/add_food', methods=['POST'])
-def add_food():
-    if request.method == 'POST':
-        for key in request.form:
-            print(request.form[key])
-        return 'Hello world'
-    else:
-        return redirect('/')
+def f_add_food():
+    for field in request.form:
+        print(field)
+    return redirect('/')
+
+
+@app.route('/add-meal')
+def r_add_meal():
+    all_foods = foods
+    return render_template('add_meal.html', food_items = all_foods)
+
+
+@app.route('/add_meal', methods=['POST'])
+def f_add_meal():
+    for field in request.form:
+        print(field)
+    return redirect('/')
 
 
 if __name__ == '__main__':

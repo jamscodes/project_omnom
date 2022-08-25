@@ -36,7 +36,7 @@
                     <select name="food_items" class="form-select mb-4">
                         <option disabled selected>Choose Foods</option>
                         {% for food in food_items %}
-                        <option value="{{ food.id }}">{{food.name}}</option>
+                        <option value="{{ food.id }}">{{ food.name }}</option>
                         {% endfor %}
                     </select>
                     <button class="btn btn-primary">Add Food</button>

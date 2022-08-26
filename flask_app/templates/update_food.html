@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid text-bg-secondary p-3 mb-5">
+        <div class="row">
+            <div class="col">
+                <p class="h1 mb-0">Project Omnom</p>
+            </div>
+            <div class="col">
+                <nav class="nav nav-pills justify-content-end">
+                    <a href="/add-food" class="nav-link text-light active">Add Food</a>
+                    <a href="/add-meal" class="nav-link text-light">Add Meal</a>
+                    <a href="/add-recipe" class="nav-link text-light">Add Recipe</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">Update {{ food.name }}</h1>
+        </div>
+        <div class="row">
+            <div class="col-4 mx-auto">
+                <form action="/food/update_food" method="POST">
+                    <input type="hidden" name="food_id" value="{{ food.id }}">
+
+                    <label class="form-label" for="food_name">Food name:</label>
+                    <input type="text" name="food_name" id="food_name" class="form-control mb-3" value="{{ food.name }}">
+
+                    <label class="form-label" for="food_calories">Food calories:</label>
+                    <input type="text" name="food_calories" id="food_calories" class="form-control mb-3" value="{{ food.calories }}">
+
+                    <label class="form-label" for="food_serving_size">Food serving size:</label>
+                    <input type="text" name="food_serving_size" id="food_serving_size" class="form-control mb-4" value="{{ food.serving_size }}">
+
+                    <select name="food_measurement_type" class="form-select mb-4">
+                        <option disabled selected>Choose Measurement Type</option>
+                        <option value="grams">Grams</option>
+                        <option value="milliliters">Milliliters</option>
+                    </select>
+
+                    <button class="btn btn-primary">Update Food</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

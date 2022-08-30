@@ -10,9 +10,16 @@ def r_add_food():
 
 @app.route('/add_food', methods=['POST'])
 def f_add_food():
-    for field in request.form:
-        print(field)
-    return redirect('/')
+    data = {
+        'name': request.form.get('food_name'),
+        'calories': request.form.get('food_calories'),
+        'serving_size': request.form.get('food_serving_size'),
+        'measurement_type': request.form.get('food_measurement_type')
+    }
+
+    new_food_id = Food.add_food(data)
+
+    return redirect(f'/food/{new_food_id}')
 
 
 @app.route('/food/<int:food_id>')
@@ -21,7 +28,7 @@ def r_one_food(food_id):
         'id': food_id
     }
 
-    food = Food.get_one(data)
+    food = Food.get_food(data)
 
     return render_template('one_food.html', food = food)
 
@@ -32,7 +39,7 @@ def r_update_food(food_id):
         'id': food_id
     }
 
-    food = Food.get_one(data)
+    food = Food.get_food(data)
 
     return render_template('update_food.html', food = food)
 

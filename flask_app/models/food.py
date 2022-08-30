@@ -25,9 +25,17 @@ class Food:
 
         return foods
 
+    @classmethod
+    def add_food(cls, data):
+        query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES (%(name)s, %(calories)s, %(serving_size)s, %(measurement_type)s, 'very dense');"
+
+        result = connectToMySQL('omnom').query_db(query, data)
+
+        return result
+
 
     @classmethod
-    def get_one(cls, data):
+    def get_food(cls, data):
         query = "SELECT * FROM foods WHERE id = %(id)s;"
 
         result = connectToMySQL('omnom').query_db(query, data)

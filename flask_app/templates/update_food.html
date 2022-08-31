@@ -15,9 +15,11 @@
             </div>
             <div class="col">
                 <nav class="nav nav-pills justify-content-end">
+                    <a href="/dashboard" class="nav-link text-light">Dashboard</a>
                     <a href="/food/add-food" class="nav-link text-light">Add Food</a>
                     <a href="/meal/add-meal" class="nav-link text-light">Add Meal</a>
-                    <a href="/add-recipe" class="nav-link text-light">Add Recipe</a>
+                    <a href="/recipe/add-recipe" class="nav-link text-light">Add Recipe</a>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
                 </nav>
             </div>
         </div>
@@ -35,10 +37,10 @@
                     <input type="text" name="food_name" id="food_name" class="form-control mb-3" value="{{ food.name }}">
 
                     <label class="form-label" for="food_calories">Food calories:</label>
-                    <input type="text" name="food_calories" id="food_calories" class="form-control mb-3" value="{{ food.calories }}">
+                    <input type="number" name="food_calories" id="food_calories" class="form-control mb-3" value="{{ food.calories }}">
 
                     <label class="form-label" for="food_serving_size">Food serving size:</label>
-                    <input type="text" name="food_serving_size" id="food_serving_size" class="form-control mb-4" value="{{ food.serving_size }}">
+                    <input type="number" name="food_serving_size" id="food_serving_size" class="form-control mb-4" value="{{ food.serving_size }}">
 
                     <select name="food_measurement_type" class="form-select mb-4">
                         <option disabled selected>Choose Measurement Type</option>

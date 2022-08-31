@@ -11,7 +11,7 @@ class User:
 
     
     @classmethod
-    def get_one(cls, data):
+    def get_user(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
 
         result = connectToMySQL('omnom').query_db(query, data)

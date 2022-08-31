@@ -1,5 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
+# calories / 453.5924 (if < 300 then it is not dense) (if 300 < x < 800 then it is dense) (if 800 < x then it is very dense)
+
+
 class Food:
     def __init__(self, data):
         self.id = data['id']
@@ -10,6 +13,17 @@ class Food:
         self.caloric_density = data['caloric_density']
         self.updated_at = data['updated_at']
         self.created_at = data['created_at']
+
+    @staticmethod
+    def determine_density(calories, serving_size):
+        calories_per_unit = calories * (456.5924 / serving_size)
+
+        if calories_per_unit < 300:
+            return 'not dense'
+        elif 300 < calories_per_unit < 800:
+            return 'dense'
+        else:
+            return 'very dense'
 
 
     @classmethod
@@ -27,7 +41,7 @@ class Food:
 
     @classmethod
     def add_food(cls, data):
-        query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES (%(name)s, %(calories)s, %(serving_size)s, %(measurement_type)s, 'very dense');"
+        query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES (%(name)s, %(calories)s, %(serving_size)s, %(measurement_type)s, %(caloric_density)s);"
 
         result = connectToMySQL('omnom').query_db(query, data)
 
@@ -47,19 +61,10 @@ class Food:
 
     @classmethod
     def update_food(cls, data):
-        query = "UPDATE foods SET name = %(name)s, calories = %(calories)s, serving_size = %(serving_size)s, measurement_type = %(measurement_type)s WHERE id = %(id)s;"
+        query = "UPDATE foods SET name = %(name)s, calories = %(calories)s, serving_size = %(serving_size)s, measurement_type = %(measurement_type)s, caloric_density = %(caloric_density)s WHERE id = %(id)s;"
+
+        data['caloric_density'] = cls.determine_density(data.get('calories'), data.get('serving_size'))
 
         connectToMySQL('omnom').query_db(query, data)
 
         return True
-
-    # add a CREATE query
-    # @classmethod
-    # def add_food(cls):
-    #     query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES ("Whole Coffee Beans", 10, 250, "grams", 1);"
-
-    # add a READ query that only reads one food
-
-    # add an UPDATE query
-
-    # add a DELETE query

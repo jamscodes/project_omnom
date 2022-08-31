@@ -28,9 +28,18 @@
         </div>
         <div class="row">
             <div class="col-4 mx-auto">
-                <form action="/add_meal" method="POST">
+                <form action="/meal/add_meal" method="POST">
                     <label class="form-label" for="meal_name">Meal name:</label>
                     <input type="text" name="meal_name" id="meal_name" class="form-control mb-3">
+
+                    <label class="form-label" for="meal_type">Meal type:</label>
+                    <select name="meal_type" id="meal_type" class="form-control mb-3">
+                        <option disabled selected>Choose Meal Type</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                    </select>
+
                     <select multiple name="food_items" class="form-select mb-4">
                         <option disabled selected>Choose Foods</option>
                         {% for food in food_items %}

@@ -3,12 +3,12 @@ from flask import render_template, request, redirect
 from flask_app.models.food import Food
 
 
-@app.route('/add-food')
+@app.route('/food/add-food')
 def r_add_food():
     return render_template('add_food.html')
 
 
-@app.route('/add_food', methods=['POST'])
+@app.route('/food/add_food', methods=['POST'])
 def f_add_food():
     data = {
         'name': request.form.get('food_name'),

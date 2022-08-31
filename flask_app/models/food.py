@@ -1,4 +1,4 @@
-from ..config.mysqlconnection import MySQLConnection
+from flask_app.config.mysqlconnection import connectToMySQL
 
 class Food:
     def __init__(self, data):
@@ -16,7 +16,7 @@ class Food:
     def get_all(cls):
         query = "SELECT * FROM foods;"
 
-        results = MySQLConnection('omnom').query_db(query)
+        results = connectToMySQL('omnom').query_db(query)
 
         foods = []
 
@@ -25,22 +25,41 @@ class Food:
 
         return foods
 
-    
+    @classmethod
+    def add_food(cls, data):
+        query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES (%(name)s, %(calories)s, %(serving_size)s, %(measurement_type)s, 'very dense');"
+
+        result = connectToMySQL('omnom').query_db(query, data)
+
+        return result
+
+
+    @classmethod
+    def get_food(cls, data):
+        query = "SELECT * FROM foods WHERE id = %(id)s;"
+
+        result = connectToMySQL('omnom').query_db(query, data)
+
+        # print(result)
+
+        return cls(result[0])
+
+
+    @classmethod
+    def update_food(cls, data):
+        query = "UPDATE foods SET name = %(name)s, calories = %(calories)s, serving_size = %(serving_size)s, measurement_type = %(measurement_type)s WHERE id = %(id)s;"
+
+        connectToMySQL('omnom').query_db(query, data)
+
+        return True
+
+    # add a CREATE query
     # @classmethod
     # def add_food(cls):
     #     query = "INSERT INTO foods (name, calories, serving_size, measurement_type, caloric_density) VALUES ("Whole Coffee Beans", 10, 250, "grams", 1);"
 
-# invisible process that returns a dictionary with all of the 
-# database columns
+    # add a READ query that only reads one food
 
-# @classmethod
-    # def get_all(cls):
-    #     query = "SELECT * FROM friends;"
-    #     # make sure to call the connectToMySQL function with the schema you are targeting.
-    #     results = connectToMySQL('first_flask').query_db(query)
-    #     # Create an empty list to append our instances of friends
-    #     friends = []
-    #     # Iterate over the db results and create instances of friends with cls.
-    #     for friend in results:
-    #         friends.append( cls(friend) )
-    #     return friends
+    # add an UPDATE query
+
+    # add a DELETE query

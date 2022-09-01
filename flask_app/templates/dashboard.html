@@ -15,9 +15,11 @@
             </div>
             <div class="col">
                 <nav class="nav nav-pills justify-content-end">
+                    <a href="/dashboard" class="nav-link text-light active">Dashboard</a>
                     <a href="/food/add-food" class="nav-link text-light">Add Food</a>
-                    <a href="/meal/add-meal" class="nav-link text-light active">Add Meal</a>
-                    <a href="/add-recipe" class="nav-link text-light">Add Recipe</a>
+                    <a href="/meal/add-meal" class="nav-link text-light">Add Meal</a>
+                    <a href="/recipe/add-recipe" class="nav-link text-light">Add Recipe</a>
+                    <a href="/logout" class="btn btn-danger">Logout</a>
                 </nav>
             </div>
         </div>
@@ -36,16 +38,20 @@
                     <thead>
                         <tr>
                             <th>Meal Name</th>
+                            <th>Type</th>
                             <th>Created On</th>
                             <th>Last Updated</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for meal in meals %}
                         <tr>
-                            <td>Nuggies 'n' Wheels</td>
-                            <td>Yesterday</td>
-                            <td>Today</td>
+                            <td><a href="/meal/{{ meal.id }}">{{ meal.name }}</a></td>
+                            <td>{{ meal.type }}</td>
+                            <td>{{ meal.created_at }}</td>
+                            <td>{{ meal.updated_at }}</td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

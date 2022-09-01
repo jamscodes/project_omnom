@@ -2,6 +2,13 @@
 <p>This document is a place that will provide more details for each major/minor update that is made to this project.</p>
 <p>Updates will be numbered and will be sorted in descending order (the most recent update will be at the top of this file, etc.)</p>
 <hr>
+
+<h2>Update #3</h2>
+<h3>Adding a meal:</h3>
+<p>The process for adding a meal has been split into a two-part process. Part one is where you give the meal a name, designate a type, and select what foods belong in your meal. Part two is where you designate the quantity required of each food you selected in part one.</p>
+
+<hr>
+
 <h2>Update #2</h2>
 <h3>Models:</h3>
 <ul>

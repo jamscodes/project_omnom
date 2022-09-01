@@ -11,23 +11,23 @@ class Meal:
 
 
     @classmethod
-    def add_meal(cls, data, ingredient_ids):
+    def add_meal(cls, meal_data, ingredient_data):
         query = "INSERT INTO meals (name, type) VALUES (%(name)s, %(type)s);"
 
-        result = connectToMySQL('omnom').query_db(query, data)
+        new_meal_id = connectToMySQL('omnom').query_db(query, meal_data)
 
-        for ingredient_id in ingredient_ids:
+        for i in range(0, len(ingredient_data['ids'])):
             ing_data = {
-                'food_id': ingredient_id,
-                'meal_id': result,
-                'quantity': 1
+                'food_id': ingredient_data['ids'][i],
+                'meal_id': new_meal_id,
+                'quantity': ingredient_data['quantities'][i]
             }
 
             ing_query = "INSERT INTO ingredients (food_id, meal_id, quantity) VALUES (%(food_id)s, %(meal_id)s, %(quantity)s);"
 
             connectToMySQL('omnom').query_db(ing_query, ing_data)
 
-        return result
+        return new_meal_id
 
 
     @classmethod

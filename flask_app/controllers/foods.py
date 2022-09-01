@@ -12,10 +12,10 @@ def r_add_food():
 def f_add_food():
     data = {
         'name': request.form.get('food_name'),
-        'calories': request.form.get('food_calories'),
-        'serving_size': request.form.get('food_serving_size'),
+        'calories': int(request.form.get('food_calories')), #type: ignore
+        'serving_size': int(request.form.get('food_serving_size')), #type: ignore
         'measurement_type': request.form.get('food_measurement_type'),
-        'caloric_density': Food.determine_density(request.form.get('food_calories'), request.form.get('food_serving_size'))
+        'caloric_density': Food.determine_density(int(request.form.get('food_calories')), int(request.form.get('food_serving_size'))) #type: ignore
     }
 
     new_food_id = Food.add_food(data)

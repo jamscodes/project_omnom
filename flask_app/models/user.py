@@ -9,7 +9,7 @@ class User:
         self.created_at = data.get('created_at')
         self.updated_at = data.get('updated_at')
 
-    
+
     @classmethod
     def get_user(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"

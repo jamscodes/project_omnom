@@ -7,6 +7,9 @@
 <h3>Adding a meal:</h3>
 <p>The process for adding a meal has been split into a two-part process. Part one is where you give the meal a name, designate a type, and select what foods belong in your meal. Part two is where you designate the quantity required of each food you selected in part one.</p>
 
+<h3>Logging in a user:</h3>
+<p>Added a "login" form to the login page</p>
+
 <hr>
 
 <h2>Update #2</h2>

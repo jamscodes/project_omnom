@@ -20,3 +20,10 @@ def f_add_meal():
     meal_id = Meal.add_meal(meal_data, request.form.getlist('food_items'))
 
     return redirect('/meal/add-meal')
+
+
+@app.route('/meal/<int:meal_id>')
+def r_show_meal(meal_id):
+    meal_data = Meal.get_meal({'id': meal_id})
+
+    return render_template('one_meal.html', meal = meal_data[0], ingredients = meal_data[1])

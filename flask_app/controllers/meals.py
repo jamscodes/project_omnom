@@ -45,6 +45,8 @@ def f_finish_meal():
 
     Meal.add_meal(meal_data, ingredient_data)
 
+    session.pop('meal_data')
+
     return redirect('/dashboard')
 
 
